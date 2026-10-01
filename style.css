@@ -1,0 +1,215 @@
+/* ==========================================================================
+   1. VARIÁVEIS DE CORES (Idênticas à imagem)
+   ========================================================================== */
+:root {
+    --bg-gradient: linear-gradient(135deg, #ffffff 0%, #a89ae7 100%);
+    --calc-bg: rgba(255, 255, 255, 0.4);
+    --calc-border: rgba(5, 5, 5, 0.815);
+    --calc-shadow: 0 24px 64px rgba(58, 50, 50, 0.4);
+    
+    /* Cores dos Botões */
+    --btn-num-bg: rgba(253, 253, 253, 0.774);
+    --btn-num-hover: rgba(73, 67, 67, 0.096);
+    --btn-op-bg: rgba(99, 101, 241, 0.164);
+    --btn-op-hover: rgba(99, 102, 241, 0.2);
+    --btn-op-text: #4758f0;
+    
+    /* Gradientes Especiais (Botão de Igual e Destaques) */
+    --btn-equal-grad: linear-gradient(90deg, #6366f1 0%, #4f46e5 100%);
+    
+    /* Cores de Texto */
+    --text-primary: #000000;
+    --text-secondary: #5140ec;
+    --text-muted: #000000;
+
+}
+
+/* ==========================================================================
+   2. CONFIGURAÇÕES GERAIS E ESTRUTURA
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--bg-gradient);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* Container que segura Calculadora + Histórico lado a lado */
+.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* ==========================================================================
+   3. DESIGN DA CALCULADORA (Estilo Interface Premium)
+   ========================================================================== */
+
+.moldura {
+    background: var(--calc-bg);
+    border: 1px solid var(--calc-border);
+    backdrop-filter: blur(16px); /* Efeito de vidro fosco */
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 24px;
+    padding: 32px;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: var(--calc-shadow);
+}
+
+   /* Visor Display */
+#display {
+    display: block;
+    width: 100%;
+    text-align: right;
+    font-size: 64px;
+    font-weight: 400;
+    color: var(--text-primary);
+    background: transparent;
+    margin-bottom: 24px;
+    word-break: break-all;
+    min-height: 80px;
+}
+
+/* Grade de Botões utilizando CSS Grid */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+button {
+    border: none;
+    border-radius: 16px;
+    height: 64px;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-primary);
+    background: var(--btn-num-bg);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0 20px;
+}
+
+.btn-theme-toggle {
+  background-color: var(--btn-num-bg);
+  color: var(--text-primary);
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Suaviza a transição */
+}
+
+.btn-theme-toggle:hover {
+  background: #333333; /* Cor escura do tema dark */
+  color: #41e799; /* Neon para o tema dark */
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+}
+
+button:hover {
+    background: var(--btn-num-hover);
+    transform: translateY(-2px);
+}
+
+/* Estilização das classes que adicionamos no passo anterior */
+.btn-op {
+    background: var(--btn-op-bg);
+    color: var(--btn-op-text);
+}
+
+.btn-op:hover {
+    background: var(--btn-op-hover);
+}
+
+.btn-clear {
+    color: #ef4444; /* Vermelho suave para limpar */
+    background: rgba(239, 68, 68, 0.08);
+}
+
+.btn-clear:hover {
+    background: rgba(239, 68, 68, 0.15);
+}
+
+.btn-equal {
+    background: var(--btn-equal-grad);
+    grid-column: span 2; /* Faz o botão de igual ocupar 2 colunas */
+    font-weight: 600;
+}
+
+.btn-equal:hover {
+    background: linear-gradient(90deg, #4f46e5 0%, #6366f1 100%);
+    box-shadow: 0 0 20px rgba(12, 12, 26, 0.4);
+    opacity: 0.95;
+}
+
+/* ==========================================================================
+   4. PAINEL DE HISTÓRICO E FOOTER
+   ========================================================================== */
+.history-panel {
+    background: var(--calc-bg);
+    border: 1px solid var(--calc-border);
+    backdrop-filter: blur(16px);
+    border-radius: 24px;
+    padding: 24px;
+    width: 300px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+}
+
+.history-panel h2 {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+#history-list {
+    list-style: none;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.empty-msg {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.main-footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 14px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--calc-border);
+}
+
+.main-footer a {
+    color: var(--btn-op-text);
+    text-decoration: none;
+}
